@@ -15,21 +15,69 @@ class TV:
             self.power = False
             print("TV desligada")
 
-    def aumentarVolume(self):
-        if self.volume < 100:
-            self.volume += 1
-        return print(self.volume)
+    def maisVolume(self):
+        if self.power == True:
+            if self.mute == False:
+                if self.volume < 100:
+                    self.volume += 1
+                return print(self.volume)
+            else:
+                print("TV MUTE")
+        else:
+            print("TV OFF")
+            pass
 
-    def diminuirVolume(self):
-        if self.volume > 0:
-            self.volume -= 1
-        return print(self.volume)
+    def menosVolume(self):
+        if self.power == True:
+            if self.mute == False:
+                if self.volume > 0:
+                    self.volume -= 1
+                return print(self.volume)
+            else:
+                print("TV MUTE")
+        else:
+            print("TV OFF")
+            pass
+
+    def canalProximo(self):
+        if self.power == True:
+            if self.channel < 5:
+                self.channel += 1
+            return print(self.channel)
+        else:
+            print("TV OFF")
+            pass
+
+    def canalAnterior(self):
+        if self.power == True:
+            if self.channel > 1:
+                self.channel -= 1
+            return print(self.channel)
+        else:
+            print("TV OFF")
+            pass
+
+    def muteTV(self):
+        if self.power == True:
+            if self.mute == True:
+                self.mute = False
+            elif self.mute == False:
+                self.mute = True
+                self.volume = 0
+        else:
+            print("TV OFF")
+            pass
+
 
 
 if __name__ == "__main__":
     tvPrincipal = TV(False, 0, 1, False, "Sem informações", int)
 
     tvPrincipal.Power()
-    tvPrincipal.aumentarVolume()
+    tvPrincipal.maisVolume()
+    tvPrincipal.maisVolume()
+    tvPrincipal.maisVolume()
+    tvPrincipal.muteTV()
+    tvPrincipal.maisVolume()
 
 
