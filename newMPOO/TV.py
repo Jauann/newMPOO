@@ -1,83 +1,102 @@
 class TV:
-    def __init__(self, power, volume, channel, mute, getInfo, selectChannel):
-        self.power = power
-        self.volume = volume
-        self.channel = channel
-        self.mute = mute
-        self.getInfo = getInfo
-        self.selectChannel = selectChannel
+    def __init__(self):
+        self.power = False
+        self.volume = 0
+        self.channel = 1
+        self.mute = False
+        self.getInfo = "getInfo"
+        self.selectChannel = self.channel
 
     def Power(self):
-        if self.power == False:
-            self.power = True
+        self.power = not self.power
+        if self.power:
             print("TV ligada")
         else:
-            self.power = False
             print("TV desligada")
 
-    def maisVolume(self):
-        if self.power == True:
-            if self.mute == False:
+    def maisvolume(self):
+        if self.power:
+            if not self.mute:
                 if self.volume < 100:
                     self.volume += 1
-                return print(self.volume)
+                print("Volume:", self.volume)
             else:
                 print("TV MUTE")
         else:
             print("TV OFF")
-            pass
 
-    def menosVolume(self):
-        if self.power == True:
-            if self.mute == False:
+    def menosvolume(self):
+        if self.power:
+            if not self.mute:
                 if self.volume > 0:
                     self.volume -= 1
-                return print(self.volume)
+                print("Volume:", self.volume)
             else:
                 print("TV MUTE")
         else:
             print("TV OFF")
-            pass
 
-    def canalProximo(self):
-        if self.power == True:
+    def canalproximo(self):
+        if self.power:
             if self.channel < 5:
                 self.channel += 1
-            return print(self.channel)
+            print("Canal:", self.channel)
         else:
             print("TV OFF")
-            pass
 
-    def canalAnterior(self):
-        if self.power == True:
+    def canalanterior(self):
+        if self.power:
             if self.channel > 1:
                 self.channel -= 1
-            return print(self.channel)
+            print("Canal:", self.channel)
         else:
             print("TV OFF")
-            pass
 
-    def muteTV(self):
-        if self.power == True:
-            if self.mute == True:
-                self.mute = False
-            elif self.mute == False:
-                self.mute = True
+    def mutetv(self):
+        if self.power:
+            self.mute = not self.mute
+            if self.mute:
+                print("TV MUTADA")
+            else:
+                print("MUTE DESLIGADO")
                 self.volume = 0
         else:
             print("TV OFF")
-            pass
-
-
 
 if __name__ == "__main__":
-    tvPrincipal = TV(False, 0, 1, False, "Sem informações", int)
+    tvPrincipal = TV()
 
-    tvPrincipal.Power()
-    tvPrincipal.maisVolume()
-    tvPrincipal.maisVolume()
-    tvPrincipal.maisVolume()
-    tvPrincipal.muteTV()
-    tvPrincipal.maisVolume()
+    def menu():
+        print("1 > Power")
+        print("2 > Aumentar volume")
+        print("3 > Diminuir volume")
+        print("4 > Próximo canal")
+        print("5 > Canal anterior")
+        print("6 > Mute")
 
+        op = input("Selecione a opção:")
 
+        if op == '1':
+            tvPrincipal.Power()
+            return menu()
+        elif op == '2':
+            tvPrincipal.maisvolume()
+            return menu()
+        elif op == '3':
+            tvPrincipal.menosvolume()
+            return menu()
+        elif op == '4':
+            tvPrincipal.canalproximo()
+            return menu()
+        elif op == '5':
+            tvPrincipal.canalanterior()
+            return menu()
+        elif op == '6':
+            tvPrincipal.mutetv()
+            return menu()
+        elif op == '0':
+            pass
+        else:
+            print("Opção inválida")
+            return menu()
+    menu()
