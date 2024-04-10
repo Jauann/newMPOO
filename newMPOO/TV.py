@@ -70,6 +70,17 @@ class TV:
         else:
             print("TV OFF")
 
+    def selecionarcanal(self):
+        if self.power:
+            print("Canal atual: ", self.channel)
+            self.selectChannel = input("Select channel: ")
+            self.selectChannel = int(self.selectChannel)
+            print("Indo para o canal: ", self.selectChannel)
+            self.channel = self.selectChannel
+        else:
+            print("TV OFF")
+
+
 
 if __name__ == "__main__":
     tvPrincipal = TV()
@@ -83,6 +94,8 @@ if __name__ == "__main__":
         print("[5]Canal anterior")
         print("[6]Mute")
         print("[7]Obter informações")
+        print("[8]Selecionar canal")
+        print("[0]Fechar Menu")
 
         op = input("Selecione a opção: ")
 
@@ -106,6 +119,9 @@ if __name__ == "__main__":
             return menu()
         elif op == '7':
             tvPrincipal.info()
+            return menu()
+        elif op == '8':
+            tvPrincipal.selecionarcanal()
             return menu()
         elif op == '0':
             pass
