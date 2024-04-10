@@ -73,7 +73,7 @@ class TV:
     def selecionarcanal(self):
         if self.power:
             print("Canal atual: ", self.channel)
-            self.selectChannel = input("Select channel: ")
+            self.selectChannel = input("Digite o canal que deseja selecionar: ")
             self.selectChannel = int(self.selectChannel)
             print("Indo para o canal: ", self.selectChannel)
             self.channel = self.selectChannel
