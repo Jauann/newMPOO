@@ -63,18 +63,28 @@ class TV:
         else:
             print("TV OFF")
 
+    def info(self):
+        if self.power:
+            self.getInfo = ("Canal atual: ", self.channel, "Volume: ", self.volume)
+            print(self.getInfo)
+        else:
+            print("TV OFF")
+
+
 if __name__ == "__main__":
     tvPrincipal = TV()
 
-    def menu():
-        print("1 > Power")
-        print("2 > Aumentar volume")
-        print("3 > Diminuir volume")
-        print("4 > Próximo canal")
-        print("5 > Canal anterior")
-        print("6 > Mute")
 
-        op = input("Selecione a opção:")
+    def menu():
+        print("[1]Power")
+        print("[2]Aumentar volume")
+        print("[3]Diminuir volume")
+        print("[4]Próximo canal")
+        print("[5]Canal anterior")
+        print("[6]Mute")
+        print("[7]Obter informações")
+
+        op = input("Selecione a opção: ")
 
         if op == '1':
             tvPrincipal.Power()
@@ -94,9 +104,14 @@ if __name__ == "__main__":
         elif op == '6':
             tvPrincipal.mutetv()
             return menu()
+        elif op == '7':
+            tvPrincipal.info()
+            return menu()
         elif op == '0':
             pass
         else:
             print("Opção inválida")
             return menu()
+
+
     menu()
